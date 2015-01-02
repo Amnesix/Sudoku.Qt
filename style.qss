@@ -1,0 +1,87 @@
+QWidget {
+    background-color: #A3AB0E;
+}
+
+QFrame {
+    background-color: #A75800;
+    border: 1px solid #241224;
+    padding: 0px;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    font-family: Impact;
+    font-size: 22px;
+}
+
+QPushButton {
+    background-color: #18285A;
+    border-color: #0224D9;
+    border-width: 3px;
+    color: silver;
+    font-size: 20px;
+    padding: 2px;
+    margin: 5px;
+    width: 120px;
+    height: 25px;
+    min-width: 120px;
+    min-height: 25px;
+    max-width: 120px;
+    max-height: 25px;
+}
+
+QPushButton:hover {
+background-color: #0046A7;
+    color: cyan;
+}
+
+QPushButton:pressed {
+    padding-top: 4px;
+    padding-left: 4px;
+}
+
+QLabel {
+    background-color: qlineargradient(spread:reflect, x1:0.441749, y1:0.455, x2:0.452, y2:1, stop:0 #18285A, stop:1 #111D89);
+    border: none;
+    color: silver;
+    padding: 0px;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    font-family: Impact;
+    font-size: 22px;
+    qproperty-alignment: AlignCenter;
+}
+
+QLabel:hover {
+    background-color: qlineargradient(spread:reflect, x1:0.3, y1:0.2, x2:0.6, y2:1, stop:0 #0046A7, stop:1 #0058DC);
+    color: cyan;
+}
+QLabel:pressed {
+border-radius: 0px;
+}
+
+QLabel:disabled {
+    background-color: #18285A;
+    color: #FF3E00;
+}
+
+QLabel#info {
+    background-color: transparent;
+    border: 1px solid #4F8400;
+    color: darkblue;
+    font-family: arial;
+    width: 140px;
+    height: 40px;
+    min-width: 140px;
+    min-height: 40px;
+    max-width: 140px;
+    max-height: 40px;
+}

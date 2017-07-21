@@ -10,6 +10,12 @@ class Sudoku : public QThread
 {
     Q_OBJECT
 public:
+    typedef enum {
+        NIVEAU_FACILE,
+        NIVEAU_MOYEN,
+        NIVEAU_DIFICILE
+    } NIVEAUX;
+
     int grille[9][9];
 
     Sudoku();
@@ -18,7 +24,7 @@ public:
     // Initialisation
     void razGrille();
     void razGrille(int grille[9][9]);
-    void aleatoire(int niveau);
+    void aleatoire(Sudoku::NIVEAUX niveau);
     // Vérification
     bool verifieLigne(int l);
     bool verifieColonne(int c);

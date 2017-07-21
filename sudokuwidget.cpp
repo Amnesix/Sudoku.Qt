@@ -57,9 +57,11 @@ SudokuWidget::SudokuWidget(Sudoku *sudoku, QWidget *parent) : QWidget(parent)
     timer->setInterval(1000);
     connect(timer, SIGNAL(timeout()), this, SLOT(majTimer()));
 
-    QFile *style = new QFile(".\\style.qss");
+    QFile *style = new QFile("./style.qss");
     if (!style->exists())
-        style = new QFile("..\\style.qss");
+        style = new QFile("../style.qss");
+    if (!style->exists())
+        style = new QFile("../sudoku/style.qss");
     if (style->open(QIODevice::ReadOnly))
     {
         QString styleSheet = style->readAll();
@@ -171,7 +173,7 @@ void SudokuWidget::nouvelleGrille()
     sudoku->razGrille();
     emit majGrille();
     // Créer une nouvelle grille aléatoire
-    sudoku->aleatoire(0);
+    sudoku->aleatoire(Sudoku::NIVEAU_FACILE);
     // Et mettre à jour l'affichage
     emit majGrille();
 #ifdef DEBUG

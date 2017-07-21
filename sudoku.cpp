@@ -4,6 +4,21 @@
 #include <time.h>
 #include <QDebug>
 
+#if 0
+int rdtsc()
+{
+    __asm__ __volatile__("rdtsc");
+}
+#endif
+
+int myrandom(int min, int max)
+{
+#if 0
+    srand(rdtsc());
+#endif
+    return(min + (rand() % (max - min + 1)));
+}
+#define RAND9() myrandom(0, 8)
 
 Sudoku::Sudoku()
 {
@@ -37,18 +52,19 @@ void Sudoku::razGrille(int grille[9][9])
 ///
 /// \brief Sudoku::aleatoire
 /// Création d'une grille aléatoire
-void Sudoku::aleatoire(int niveau)
+void Sudoku::aleatoire(Sudoku::NIVEAUX niveau)
 {
     int compteur = 0;
+    int recommence = 10;
     srand(time(NULL));
 
-#define RAND9() ((rand()*9)/(RAND_MAX+1))
 debut:
     while (true)
     {
-        int l = RAND9();
-        int c = RAND9();
-        int val = RAND9()+1;
+        int l = myrandom(0, 8);
+        int c = myrandom(0, 8);
+        int val = myrandom(1, 9);
+        qDebug() << "Vérification" << l << c << val << compteur;
         if (verifiePossible(l, c, val))
         {
             grille[l][c] = val;
@@ -59,10 +75,27 @@ debut:
     if (!resousGrille())
     {
         razGrille();
-        goto debut;
+        qDebug() << "recommence =" << recommence;
+        if (--recommence)
+            goto debut;
+        return ;
+    }
+
+    int max;
+    switch (niveau)
+    {
+    case NIVEAU_FACILE:
+        max = 50;
+        break;
+    case NIVEAU_MOYEN:
+        max = 40;
+        break;
+    case NIVEAU_DIFICILE:
+        max = 30;
+        break;
     }
     compteur = 81;
-    while (compteur > 40)
+    while (compteur > max)
     {
         int l = RAND9();
         int c = RAND9();
